@@ -2,7 +2,7 @@ import React from "react";
 
 import "@components/footer/index.scss"
 
-const Footer = () => {
+export const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-content">

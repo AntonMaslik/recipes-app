@@ -1,15 +1,13 @@
 import React from "react";
 
 import "./App.scss";
-import Footer from "./components/footer";
-import { Navbar } from "./components/navbar";
+
+import { Layout } from "@components/layouts/layout"
 
 function App() {
   return (
     <div className="App">
-      <Navbar />
-
-      <Footer />
+        <Layout></Layout>
     </div>
   );
 }
