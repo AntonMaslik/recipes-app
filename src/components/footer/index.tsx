@@ -1,20 +1,19 @@
 import React from "react";
 
 import "@components/footer/index.scss"
+import { navigation } from "@components/footer/navigation";
 
 export const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-content">
-        <p>© 2024 My Company. All Rights Reserved.</p>
+        <p>© 2024 Recipes. Sharing the joy of cooking every day.</p>
         <div className="footer-links">
-          <a href="/privacy">Privacy Policy</a>
-          <a href="/terms">Terms of Service</a>
-          <a href="/contact">Contact Us</a>
+          { navigation.links.map((link, index) => (
+          <a key={index} href={link.to}>{link.name}</a>
+          ))}
         </div>
       </div>
     </footer>
   );
 };
-
-export default Footer;

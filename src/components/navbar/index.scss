@@ -33,6 +33,11 @@ nav.navbar-links{
     width: auto;
     display: inline-block;
     text-align: right;
+    margin-right: 2rem;
+
+    @media screen and (max-width: 768px) {
+        display: none;
+    }
 }
 
 .navbar-links a {
@@ -52,6 +57,10 @@ nav.navbar-links{
     flex-grow: 1;
     display: flex;
     justify-content: center;
+
+    @media screen and (max-width: 768px) {
+        margin-right: 2rem;
+    }
 }
 
 .search-input {
