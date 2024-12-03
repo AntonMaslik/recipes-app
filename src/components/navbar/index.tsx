@@ -1,7 +1,7 @@
 import * as React from "react";
 
-import './index.scss'
-import { navigation } from "./navigation";
+import "@components/navbar/index.scss"
+import { navigation } from "@components/navbar/navigation";
 
 interface IconProps {
   width?: string;
