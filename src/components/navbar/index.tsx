@@ -1,7 +1,7 @@
 import * as React from "react";
 
-import "index.scss";
-import { navigation } from "@components/navbar/navigation";
+import './index.scss'
+import { navigation } from "./navigation";
 
 interface IconProps {
   width?: string;
@@ -41,3 +41,5 @@ export const Navbar = () => (
     </nav>
   </div>
 );
+export { navigation };
+
