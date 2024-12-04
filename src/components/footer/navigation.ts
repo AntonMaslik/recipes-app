@@ -9,8 +9,7 @@ export type Navigation = {
 
 export const navigation = {
   links: [
-    { name: "About", to: "/about" },
     { name: "Contacts", to: "/contacts" },
-    { name: "Recipes", to: "/" },
+    { name: "About", to: "/about" },
   ],
 };
