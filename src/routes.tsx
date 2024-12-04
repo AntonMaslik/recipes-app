@@ -1,0 +1,8 @@
+import { RegisterPage } from "@components/pages/register";
+
+export const routes = [
+  {
+    path: "/sign-up",
+    element: <RegisterPage />,
+  },
+];
