@@ -2,7 +2,7 @@ import React from "react";
 
 import "@components/pages/styles/login.scss";
 
-export function LoginPage() {
+export const LoginPage: React.FC = () => {
   return (
     <div className="container-login">
       <div className="content-login">
@@ -36,4 +36,4 @@ export function LoginPage() {
       </div>
     </div>
   );
-}
+};

@@ -1,11 +1,12 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import "@components/pages/styles/register.scss";
 
-import authService, { Tokens } from "services/auth.service";
+import authService from "services/auth.service";
+import { Tokens } from "@apollo-custom/types/tokens";
 
-export function RegisterPage() {
+export const RegisterPage: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -15,7 +16,9 @@ export function RegisterPage() {
   const handleRegister = async () => {
     try {
       const token: Tokens = await authService.signUp({ email, password, name });
+
       localStorage.setItem("accessToken", token.accessToken);
+
       navigate("/");
     } catch (error) {
       setError("SignUp failed!");
@@ -74,4 +77,4 @@ export function RegisterPage() {
       </div>
     </div>
   );
-}
+};

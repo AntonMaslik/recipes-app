@@ -1,6 +1,6 @@
 import "@components/pages/styles/index.scss";
 
-export function IndexPage() {
+export const IndexPage: React.FC = () => {
   return (
     <div className="container-index">
       <h1 className="title-content">
@@ -11,4 +11,4 @@ export function IndexPage() {
       </p>
     </div>
   );
-}
+};

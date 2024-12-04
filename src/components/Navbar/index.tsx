@@ -19,7 +19,7 @@ export const IconSearch = ({ width = "10", height = "10" }: IconProps) => (
   </svg>
 );
 
-export const Navbar = () => (
+export const Navbar: React.FC = () => (
   <div className="navbar">
     <a className="navbar-brand" href={navigation.brand.to}>
       {navigation.brand.name}

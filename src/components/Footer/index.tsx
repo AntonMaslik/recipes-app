@@ -3,7 +3,7 @@ import React from "react";
 import "@components/Footer/index.scss";
 import { navigation } from "@components/Footer/navigation";
 
-export const Footer = () => {
+export const Footer: React.FC = () => {
   return (
     <footer className="footer">
       <div className="footer-content">
