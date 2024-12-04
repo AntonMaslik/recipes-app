@@ -21,7 +21,11 @@ export const RegisterPage: React.FC = () => {
 
       navigate("/");
     } catch (error) {
-      setError("SignUp failed!");
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError("SignUp failed!");
+      }
     }
   };
 
@@ -62,7 +66,7 @@ export const RegisterPage: React.FC = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          {error && <p>{error}</p>}
+          {error && <p>Error: {error}</p>}
           <button
             type="button"
             className="button-register-submit"

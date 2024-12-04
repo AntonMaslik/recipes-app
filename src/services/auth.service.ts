@@ -11,29 +11,21 @@ import { Tokens } from "@apollo-custom/types/tokens";
 
 const authService = {
   signUp: async (input: SignUpDTO): Promise<Tokens> => {
-    try {
-      const response: FetchResult = await apolloClient.mutate({
-        mutation: REGISTER_MUTATION,
-        variables: { input },
-      });
+    const response: FetchResult = await apolloClient.mutate({
+      mutation: REGISTER_MUTATION,
+      variables: { input },
+    });
 
-      return response.data?.signUp;
-    } catch (error) {
-      throw new Error("SignUp failed!");
-    }
+    return response.data?.signUp;
   },
 
   signIn: async (input: SignInDTO): Promise<Tokens> => {
-    try {
-      const response: FetchResult = await apolloClient.mutate({
-        mutation: LOGIN_MUTATION,
-        variables: { input },
-      });
+    const response: FetchResult = await apolloClient.mutate({
+      mutation: LOGIN_MUTATION,
+      variables: { input },
+    });
 
-      return response.data?.signIn;
-    } catch (error) {
-      throw new Error("SignIn failed");
-    }
+    return response.data?.signIn;
   },
 };
 
