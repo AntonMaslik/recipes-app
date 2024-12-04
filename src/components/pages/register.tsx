@@ -40,7 +40,7 @@ export function RegisterPage() {
           </button>
         </form>
         <div className="login-link">
-          Already have an account? <a href="login.html">Sign Up</a>
+          Already have an account? <a href="/sign-in">Sign In</a>
         </div>
       </div>
     </div>
