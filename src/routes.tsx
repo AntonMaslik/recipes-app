@@ -1,6 +1,6 @@
-import { IndexPage } from "@components/pages";
-import { LoginPage } from "@components/pages/login";
-import { RegisterPage } from "@components/pages/register";
+import { IndexPage } from "@components/pages/IndexPage";
+import { LoginPage } from "@components/pages/LoginPage";
+import { RegisterPage } from "@components/pages/RegisterPage";
 
 export const routes = [
   {
