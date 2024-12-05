@@ -76,6 +76,7 @@ nav.navbar-links a{
     flex-grow: 1;
     display: flex;
     justify-content: center;
+    margin-left: 15px;;
 
     @media screen and (max-width: 768px) {
         margin-right: 2rem;
@@ -109,7 +110,9 @@ nav.navbar-links a{
     border: 1px solid #848484;
     padding: .5rem;
     cursor: pointer;
-    background: #f0f0f0
+    background: #f0f0f0;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 .search-input:focus {
