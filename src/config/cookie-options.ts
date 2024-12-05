@@ -2,5 +2,5 @@ export const COOKIE_OPTIONS = {
   path: "/",
   secure: true,
   sameSite: "strict" as const,
-  maxAge: 86400, // 1 day
+  maxAge: 604800, // 7 day
 };
