@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useState } from "react";
 
 import { getNavigation } from "@components/Navbar/navigation";
 import { useAuth } from "contexts/AuthContext";
@@ -23,8 +23,19 @@ export const IconSearch = ({ width = "10", height = "10" }: IconProps) => (
 
 export const Navbar: React.FC = () => {
   const { user } = useAuth();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navigation = getNavigation(user);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
+      toggleMenu();
+    }
+  };
 
   return (
     <div className="navbar">
@@ -46,6 +57,26 @@ export const Navbar: React.FC = () => {
           </a>
         ))}
       </nav>
+
+      <nav className={`navbar-mobile ${isMenuOpen ? "open" : ""}`}>
+        {navigation.links.map((link, index) => (
+          <a key={index} href={link.to}>
+            {link.name}
+          </a>
+        ))}
+      </nav>
+
+      <button
+        className="burger-menu"
+        onClick={toggleMenu}
+        onKeyDown={handleKeyDown}
+        aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+        aria-expanded={isMenuOpen}
+      >
+        <span className="burger-bar"></span>
+        <span className="burger-bar"></span>
+        <span className="burger-bar"></span>
+      </button>
     </div>
   );
 };

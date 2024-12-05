@@ -1,3 +1,5 @@
+$color-primary: #FF6347;
+
 .navbar {
     padding: 10px;
     background-color: white;
@@ -29,22 +31,38 @@
     transform: scale(1.1);
 }
 
-nav.navbar-links{
+nav.navbar-links a{
     width: auto;
     display: inline-block;
     text-align: right;
     margin-right: 2rem;
+    color: black;
+    text-decoration: none;
+    white-space: nowrap;
 
     @media screen and (max-width: 768px) {
         display: none;
     }
 }
 
-.navbar-links a {
-    margin: 0 15px;
+.navbar-mobile a {
+    margin-left: 10px;
     color: black;
     text-decoration: none;
     white-space: nowrap;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+
+    &.active {
+        color: $color-primary;
+    }
+}
+
+.navbar-mobile a:hover {
+    -webkit-text-decoration-line: underline;
+    text-decoration-line: underline;
+    text-decoration-color: #d54215;
 }
 
 .navbar-links a:hover {
@@ -61,6 +79,28 @@ nav.navbar-links{
     @media screen and (max-width: 768px) {
         margin-right: 2rem;
     }
+}
+
+.navbar-mobile{
+    position: fixed;
+    top: 0;
+    left: -350px;
+    width: 400px;
+    height: 100%;
+    background-color: white;
+    color: white;
+    display: flex;
+    visibility: hidden;
+    flex-direction: column;
+    align-items: end;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    transition: left 0.3s ease-in-out;
+    margin-left: 0;
+}
+
+.navbar-mobile.open{
+    visibility: inherit;
 }
 
 .search-input {
@@ -92,4 +132,27 @@ nav.navbar-links{
 .search-input-button:active{
     background-color: #3e8e41;
     box-shadow: 0 5px #666;
+}
+
+.burger-menu {
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    cursor: pointer;
+    z-index: 10;
+    margin-right: 20px;
+}
+
+.burger-bar {
+    width: 30px;
+    height: 4px;
+    background-color: white;
+    border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+.burger-menu {
+        display: flex;
+    }
+
 }
