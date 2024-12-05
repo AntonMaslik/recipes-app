@@ -9,6 +9,8 @@ import { apolloClient } from "@apollo-custom/apollo-client";
 import { SignUpDTO } from "@apollo-custom/types/sign-up.dto";
 import { SignInDTO } from "@apollo-custom/types/sign-in.dto";
 import { Tokens } from "@apollo-custom/types/tokens";
+import { GET_ME_QUERY } from "@apollo-custom/queries/user-queries";
+import { User } from "@apollo-custom/types/user";
 
 const authService = {
   signUp: async (input: SignUpDTO): Promise<Tokens> => {
@@ -35,6 +37,14 @@ const authService = {
     });
 
     return response.data?.logout;
+  },
+
+  getMe: async (): Promise<User> => {
+    const response: FetchResult = await apolloClient.query({
+      query: GET_ME_QUERY,
+    });
+
+    return response.data?.getMe;
   },
 };
 

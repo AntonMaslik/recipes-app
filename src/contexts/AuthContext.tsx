@@ -1,10 +1,10 @@
-import { jwtDecode, JwtPayload } from "jwt-decode";
 import { createContext, useContext, useEffect, useState } from "react";
 
+import { User } from "@apollo-custom/types/user";
 import authService from "services/auth.service";
 
 interface AuthContextType {
-  user: JwtPayload | null;
+  user: User | null;
   token: string;
   login: (newToken: string) => void;
   logout: () => void;
@@ -17,33 +17,33 @@ interface AuthProviderProps {
 const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [user, setUser] = useState<JwtPayload | null>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string>("");
 
   useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken");
+    const accessToken: string | null = localStorage.getItem("accessToken");
+    const userDb: string | null = localStorage.getItem("userDb");
 
     if (accessToken) {
       setToken(accessToken);
     }
 
-    if (accessToken) {
-      try {
-        const decodedUser: JwtPayload = jwtDecode(accessToken);
-        setUser(decodedUser);
-      } catch (error) {
-        setUser(null);
-      }
+    if (userDb) {
+      const storedUser: User = JSON.parse(
+        localStorage.getItem("userDb") || "{}"
+      );
+      setUser(storedUser);
     }
   }, []);
 
-  const login = (newToken: string) => {
+  const login = async (newToken: string) => {
     localStorage.setItem("accessToken", newToken);
     setToken(newToken);
 
     try {
-      const decodedUser = jwtDecode(newToken);
-      setUser(decodedUser);
+      const userDb: User = await authService.getMe();
+      localStorage.setItem("userDb", JSON.stringify(userDb));
+      setUser(userDb);
     } catch (error) {
       setUser(null);
     }
@@ -51,7 +51,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const logout = async () => {
     await authService.logout();
+
     localStorage.removeItem("accessToken");
+    localStorage.removeItem("userDb");
+
     setToken("");
     setUser(null);
   };

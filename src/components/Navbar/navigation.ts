@@ -1,4 +1,4 @@
-import { JwtPayload } from "jwt-decode";
+import { User } from "@apollo-custom/types/user";
 
 export type NavLink = {
   name: string;
@@ -10,7 +10,7 @@ type Navigation = {
   links: NavLink[];
 };
 
-export const getNavigation = (user: JwtPayload | null): Navigation => {
+export const getNavigation = (user: User | null): Navigation => {
   const links: NavLink[] = [];
 
   if (user) {
