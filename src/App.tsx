@@ -1,17 +1,15 @@
-import React from "react";
-
 import "./App.scss";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import { Layout } from "@components/layouts/Layout";
+import { MainLayout } from "@components/layouts/MainLayout";
 import { routes } from "routes";
 import NotFound from "@components/pages/NotFoundPage";
 
 function App() {
   return (
     <div className="App">
-      <Layout>
+      <MainLayout>
         <Router>
           <Routes>
             {routes.map((route, index) => (
@@ -20,7 +18,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Router>
-      </Layout>
+      </MainLayout>
     </div>
   );
 }

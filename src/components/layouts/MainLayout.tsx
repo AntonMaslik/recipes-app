@@ -7,7 +7,7 @@ interface LayoutProps {
   children?: ReactNode;
 }
 
-export const Layout: React.FC<LayoutProps> = ({ children }) => {
+export const MainLayout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
       <Navbar />
@@ -17,4 +17,4 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
   );
 };
 
-export default Layout;
+export default MainLayout;

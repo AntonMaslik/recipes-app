@@ -12,6 +12,6 @@ export const navigation: Navigation = {
   brand: { name: "Recipes", to: "/" },
   links: [
     { name: "My recipes", to: "/my-recipes" },
-    { name: "Login", to: "/sign-in" },
+    { name: "Login", to: "/login" },
   ],
 };

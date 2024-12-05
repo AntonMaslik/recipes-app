@@ -4,15 +4,15 @@ import { RegisterPage } from "@components/pages/RegisterPage";
 
 export const routes = [
   {
-    path: "/sign-up",
-    element: <RegisterPage />,
+    path: "/",
+    element: <IndexPage />,
   },
   {
-    path: "/sign-in",
+    path: "/login",
     element: <LoginPage />,
   },
   {
-    path: "/",
-    element: <IndexPage />,
+    path: "/register",
+    element: <RegisterPage />,
   },
 ];
