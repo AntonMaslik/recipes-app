@@ -34,8 +34,6 @@ const authService = {
       mutation: LOGOUT_MUTATION,
     });
 
-    localStorage.removeItem("accessToken");
-
     return response.data?.logout;
   },
 };

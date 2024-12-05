@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useNavigate } from "react-router-dom";
 
 import { getNavigation } from "@components/Navbar/navigation";
 import { useAuth } from "contexts/AuthContext";
@@ -24,19 +23,8 @@ export const IconSearch = ({ width = "10", height = "10" }: IconProps) => (
 
 export const Navbar: React.FC = () => {
   const { user } = useAuth();
-  const navigate = useNavigate();
 
   const navigation = getNavigation(user);
-
-  const handleLinkClick = async (
-    onClick?: () => Promise<boolean>,
-    to?: string
-  ) => {
-    if (onClick) {
-      const status: boolean = await onClick();
-      navigate("/");
-    }
-  };
 
   return (
     <div className="navbar">
@@ -53,13 +41,7 @@ export const Navbar: React.FC = () => {
 
       <nav className="navbar-links">
         {navigation.links.map((link, index) => (
-          <a
-            key={index}
-            href={link.to}
-            onClick={(e) => {
-              e.preventDefault(), handleLinkClick(link.onClick, link.to);
-            }}
-          >
+          <a key={index} href={link.to}>
             {link.name}
           </a>
         ))}

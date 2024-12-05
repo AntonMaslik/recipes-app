@@ -1,6 +1,8 @@
 import { jwtDecode, JwtPayload } from "jwt-decode";
 import { createContext, useContext, useEffect, useState } from "react";
 
+import authService from "services/auth.service";
+
 interface AuthContextType {
   user: JwtPayload | null;
   token: string;
@@ -47,7 +49,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   };
 
-  const logout = () => {
+  const logout = async () => {
+    await authService.logout();
     localStorage.removeItem("accessToken");
     setToken("");
     setUser(null);

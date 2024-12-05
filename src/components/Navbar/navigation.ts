@@ -1,11 +1,8 @@
 import { JwtPayload } from "jwt-decode";
 
-import authService from "services/auth.service";
-
 export type NavLink = {
   name: string;
-  to?: string;
-  onClick?: () => Promise<boolean>;
+  to: string;
 };
 
 type Navigation = {
@@ -17,12 +14,8 @@ export const getNavigation = (user: JwtPayload | null): Navigation => {
   const links: NavLink[] = [];
 
   if (user) {
-    links.push({
-      name: "Logout",
-      onClick: authService.logout,
-      to: "/login",
-    });
     links.push({ name: "My recipes", to: "/my-recipes" });
+    links.push({ name: "Logout", to: "/logout" });
   } else {
     links.push({ name: "Login", to: "/login" });
   }
