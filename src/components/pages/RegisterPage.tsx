@@ -1,23 +1,27 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 import "@components/pages/styles/register.scss";
 
 import authService from "services/auth.service";
 import { Tokens } from "@apollo-custom/types/tokens";
+import { COOKIE_OPTIONS } from "config/cookie-options";
 
 export const RegisterPage: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [error, setError] = useState("");
+  const [cookies, setCookie] = useCookies(["accessToken"]);
+
   const navigate = useNavigate();
 
   const handleRegister = async () => {
     try {
       const token: Tokens = await authService.signUp({ email, password, name });
 
-      localStorage.setItem("accessToken", token.accessToken);
+      setCookie("accessToken", token.accessToken, COOKIE_OPTIONS);
 
       navigate("/");
     } catch (error) {
