@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 import { Tokens } from "@apollo-custom/types/tokens";
 import authService from "services/auth.service";
+import { useAuth } from "contexts/AuthContext";
 
 import { schemeLogin } from "./scheme-login";
 
@@ -16,6 +17,7 @@ export const LoginForm: React.FC = () => {
 
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const { login } = useAuth();
 
   const {
     register,
@@ -32,8 +34,7 @@ export const LoginForm: React.FC = () => {
         password: input.password,
       });
 
-      localStorage.setItem("accessToken", tokens.accessToken);
-
+      login(tokens.accessToken);
       navigate("/");
     } catch (error) {
       if (error instanceof Error) {

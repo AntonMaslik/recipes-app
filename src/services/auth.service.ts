@@ -3,6 +3,7 @@ import { FetchResult } from "@apollo/client";
 import {
   REGISTER_MUTATION,
   LOGIN_MUTATION,
+  LOGOUT_MUTATION,
 } from "@apollo-custom/mutations/auth-mutations";
 import { apolloClient } from "@apollo-custom/apollo-client";
 import { SignUpDTO } from "@apollo-custom/types/sign-up.dto";
@@ -26,6 +27,16 @@ const authService = {
     });
 
     return response.data?.signIn;
+  },
+
+  logout: async (): Promise<boolean> => {
+    const response: FetchResult = await apolloClient.mutate({
+      mutation: LOGOUT_MUTATION,
+    });
+
+    localStorage.removeItem("accessToken");
+
+    return response.data?.logout;
   },
 };
 

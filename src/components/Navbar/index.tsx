@@ -1,7 +1,10 @@
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
+
+import { getNavigation } from "@components/Navbar/navigation";
+import { useAuth } from "contexts/AuthContext";
 
 import "@components/Navbar/index.scss";
-import { navigation } from "@components/Navbar/navigation";
 
 interface IconProps {
   width?: string;
@@ -19,26 +22,49 @@ export const IconSearch = ({ width = "10", height = "10" }: IconProps) => (
   </svg>
 );
 
-export const Navbar: React.FC = () => (
-  <div className="navbar">
-    <a className="navbar-brand" href={navigation.brand.to}>
-      {navigation.brand.name}
-    </a>
+export const Navbar: React.FC = () => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
 
-    <div className="navbar-search">
-      <input type="text" placeholder="Search..." className="search-input" />
-      <button className="search-input-button">
-        <IconSearch height="20" width="20" />
-      </button>
+  const navigation = getNavigation(user);
+
+  const handleLinkClick = async (
+    onClick?: () => Promise<boolean>,
+    to?: string
+  ) => {
+    if (onClick) {
+      const status: boolean = await onClick();
+      navigate("/");
+    }
+  };
+
+  return (
+    <div className="navbar">
+      <a className="navbar-brand" href={navigation.brand.to}>
+        {navigation.brand.name}
+      </a>
+
+      <div className="navbar-search">
+        <input type="text" placeholder="Search..." className="search-input" />
+        <button className="search-input-button">
+          <IconSearch height="20" width="20" />
+        </button>
+      </div>
+
+      <nav className="navbar-links">
+        {navigation.links.map((link, index) => (
+          <a
+            key={index}
+            href={link.to}
+            onClick={(e) => {
+              e.preventDefault(), handleLinkClick(link.onClick, link.to);
+            }}
+          >
+            {link.name}
+          </a>
+        ))}
+      </nav>
     </div>
-
-    <nav className="navbar-links">
-      {navigation.links.map((link, index) => (
-        <a key={index} href={link.to}>
-          {link.name}
-        </a>
-      ))}
-    </nav>
-  </div>
-);
-export { navigation };
+  );
+};
+export { getNavigation };
