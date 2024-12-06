@@ -1,11 +1,21 @@
 import React from "react";
 
+import "@components/pages/styles/404page.scss";
+
 const NotFound: React.FC = () => {
   return (
-    <div style={{ textAlign: "center", padding: "50px" }}>
-      <h1>404</h1>
-      <p>Page not found</p>
-    </div>
+    <>
+      <div className="container">
+        <div className="container-content">
+          <div className="emoji">🍳</div>
+          <h1>404</h1>
+          <p>Oops! This page not found!</p>
+          <a href="/" className="home-link">
+            Back to Home
+          </a>
+        </div>
+      </div>
+    </>
   );
 };
 
