@@ -1,10 +1,13 @@
-import React from "react";
-
 import "@components/pages/styles/404page.scss";
+import { Helmet } from "react-helmet";
+import React from "react";
 
 const NotFound: React.FC = () => {
   return (
     <>
+      <Helmet>
+        <title>Not Found</title>
+      </Helmet>
       <div className="container">
         <div className="container-content">
           <div className="emoji">🍳</div>
