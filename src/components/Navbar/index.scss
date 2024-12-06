@@ -47,13 +47,13 @@ nav.navbar-links a{
 }
 
 .navbar-mobile a {
-    margin-left: 10px;
     color: black;
     text-decoration: none;
     white-space: nowrap;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    padding-top: 10px;
 
     &.active {
         color: $color-primary;
@@ -84,21 +84,21 @@ nav.navbar-links a{
 }
 
 .navbar-mobile{
-    position: fixed;
     top: 0;
-    left: -350px;
-    width: 400px;
-    height: 100%;
-    background-color: white;
+    width: auto;
+    height: auto;
     color: white;
     display: flex;
     visibility: hidden;
-    flex-direction: column;
-    align-items: end;
+    align-items: center;
     padding: 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
     transition: left 0.3s ease-in-out;
-    margin-left: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    background-color: white;
+    flex-direction: column;
 }
 
 .navbar-mobile.open{
