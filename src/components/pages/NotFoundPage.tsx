@@ -8,7 +8,7 @@ const NotFound: React.FC = () => {
       <Helmet>
         <title>Not Found</title>
       </Helmet>
-      <div className="container">
+      <div className="container-404">
         <div className="container-content">
           <div className="emoji">🍳</div>
           <h1>404</h1>

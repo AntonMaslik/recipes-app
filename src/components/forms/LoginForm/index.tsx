@@ -44,7 +44,6 @@ export const LoginForm: React.FC = () => {
   };
 
   return (
-    <div className="container-login">
       <div className="content-login">
         <h1 className="title-login">Sign In</h1>
         <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
@@ -67,6 +66,5 @@ export const LoginForm: React.FC = () => {
         </div>
         {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
       </div>
-    </div>
   );
 };

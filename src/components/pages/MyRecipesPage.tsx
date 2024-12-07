@@ -1,8 +1,8 @@
 import { Helmet } from "react-helmet";
 
-import { RecipeForm } from "@components/forms/RecipeForm";
+import "@components/pages/styles/recipes.scss"
 
-import "@components/pages/styles/my-recipes.scss";
+import { RecipeList } from "@components/RecipeList/index"
 
 export const MyRecipesPage: React.FC = () => {
   return (
@@ -10,7 +10,9 @@ export const MyRecipesPage: React.FC = () => {
       <Helmet>
         <title>My recipes</title>
       </Helmet>
-      <RecipeForm />
+      <div className="container-recipe">
+        <RecipeList/>
+      </div>
     </>
   );
 };

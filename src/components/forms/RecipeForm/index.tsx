@@ -22,7 +22,6 @@ export const RecipeForm: React.FC = () => {
   };
 
   return (
-    <div className="section">
       <form onSubmit={handleSubmit(onSubmit)}>
         <h2>Add recipe</h2>
         <div className="form-group">
@@ -74,6 +73,5 @@ export const RecipeForm: React.FC = () => {
 
         <button type="submit">Save recept</button>
       </form>
-    </div>
   );
 };

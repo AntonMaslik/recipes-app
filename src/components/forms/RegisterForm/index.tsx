@@ -45,7 +45,6 @@ export const RegisterForm: React.FC = () => {
   };
 
   return (
-    <div className="container-register">
       <div className="content-register">
         <h1 className="title-register">Sign Up</h1>
         <form className="register-form" onSubmit={handleSubmit(onSubmit)}>
@@ -71,6 +70,5 @@ export const RegisterForm: React.FC = () => {
         </div>
         {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
       </div>
-    </div>
   );
 };
