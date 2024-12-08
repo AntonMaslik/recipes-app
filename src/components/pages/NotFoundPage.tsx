@@ -2,7 +2,7 @@ import "@components/pages/styles/404page.scss";
 import { Helmet } from "react-helmet";
 import React from "react";
 
-const NotFound: React.FC = () => {
+export const NotFound: React.FC = () => {
   return (
     <>
       <Helmet>

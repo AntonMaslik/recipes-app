@@ -3,6 +3,7 @@ import { LoginPage } from "@components/pages/LoginPage";
 import { LogoutPage } from "@components/pages/LogoutPage";
 import { MyRecipesPage } from "@components/pages/MyRecipesPage";
 import { RegisterPage } from "@components/pages/RegisterPage";
+import { PrivateRoute } from "@components/PrivateRoute";
 
 export const routes = [
   {
@@ -15,7 +16,7 @@ export const routes = [
   },
   {
     path: "/logout",
-    element: <LogoutPage />,
+    element: <PrivateRoute component={LogoutPage}/>,
   },
   {
     path: "/register",
@@ -23,6 +24,6 @@ export const routes = [
   },
   {
     path: "/my-recipes",
-    element: <MyRecipesPage />,
+    element: <PrivateRoute component={MyRecipesPage}/>,
   },
 ];
