@@ -1,4 +1,4 @@
-import { User } from "@apollo-custom/types/user";
+import { User } from "types/user";
 
 export type NavLink = {
   name: string;

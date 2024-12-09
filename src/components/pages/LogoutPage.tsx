@@ -1,11 +1,11 @@
-import { useNavigate } from "react-router-dom";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
-import { useAuth } from "contexts/AuthContext";
+import { AuthContextType, useAuth } from "contexts/AuthContext";
 
 export const LogoutPage: React.FC = () => {
-  const { logout } = useAuth();
-  const navigate = useNavigate();
+  const { logout }: AuthContextType = useAuth();
+  const navigate: NavigateFunction = useNavigate();
 
   useEffect(() => {
     logout();

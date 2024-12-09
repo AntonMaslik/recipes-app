@@ -6,6 +6,7 @@ module.exports = {
   webpack: {
     alias: {
       "@components": resolvePath("./src/components"),
+      "@custom-types": resolvePath("./src/types"),
       "@apollo-custom": resolvePath("./src/apollo"),
     },
   },

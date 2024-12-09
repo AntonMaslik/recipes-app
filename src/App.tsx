@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import { MainLayout } from "@components/layouts/MainLayout";
 import { routes } from "routes";
-import NotFound from "@components/pages/NotFoundPage";
+import { NotFound } from "@components/pages/NotFoundPage";
 import { AuthProvider } from "contexts/AuthContext";
 
 function App() {

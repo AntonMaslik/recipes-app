@@ -1,9 +1,9 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-import { User } from "@apollo-custom/types/user";
+import { User } from "@custom-types/user";
 import authService from "services/auth.service";
 
-interface AuthContextType {
+export interface AuthContextType {
   user: User | null;
   token: string;
   login: (newToken: string) => void;
@@ -14,7 +14,8 @@ interface AuthProviderProps {
   children: React.ReactNode;
 }
 
-const AuthContext = createContext<AuthContextType | null>(null);
+const AuthContext: React.Context<AuthContextType | null> =
+  createContext<AuthContextType | null>(null);
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
