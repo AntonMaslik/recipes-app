@@ -87,6 +87,7 @@ export const RecipeFormAdd: React.FC<RecipeFormAddProps> = ({ onSubmit }) => {
         <label htmlFor="servingSize">Serving size:</label>
         <input
           type="number"
+          min={0}
           id="servingSize"
           value={formData.servingSize}
           onChange={handleChange}
