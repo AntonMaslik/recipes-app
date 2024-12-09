@@ -40,6 +40,10 @@
       "groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
       "newlines-between": "always"
     }],
+    "padding-line-between-statements": [
+      "error",
+      { "blankLine": "always", "prev": "*", "next": "return" }
+    ],
     "jsx-a11y/anchor-is-valid": "warn",              
     "react/jsx-uses-react": "off",                    
     "react/jsx-uses-vars": "warn"                    

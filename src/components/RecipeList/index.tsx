@@ -15,7 +15,7 @@ export const RecipeList: React.FC = () => {
   ]);
 
   const addRecipe = () => {
-    const newRecipe = {
+    const newRecipe: Recipe = {
       title: "New Recipe",
       description: "Описание нового рецепта",
     };
