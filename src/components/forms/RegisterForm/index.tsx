@@ -49,17 +49,17 @@ export const RegisterForm: React.FC = () => {
       <form className="register-form" onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="username">Name:</label>
         <input className="input-register" {...register("name")} />
-        {errors.name && <p>{errors.name.message}</p>}
+        {errors.name && <p className="error-message">{errors.name.message}</p>}
         <label htmlFor="email">Email:</label>
         <input className="input-register" {...register("email")} />
-        {errors.email && <p>{errors.email.message}</p>}
+        {errors.email && <p className="error-message">{errors.email.message}</p>}
         <label htmlFor="password">Password:</label>
         <input
           type="password"
           className="input-register"
           {...register("password")}
         />
-        {errors.password && <p>{errors.password.message}</p>}
+        {errors.password && <p className="error-message">{errors.password.message}</p>}
         <button type="submit" className="button-register-submit">
           Sign Up
         </button>
@@ -67,7 +67,7 @@ export const RegisterForm: React.FC = () => {
       <div className="login-link">
         Already have an account? <a href="/login">Sign In</a>
       </div>
-      {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
     </div>
   );
 };

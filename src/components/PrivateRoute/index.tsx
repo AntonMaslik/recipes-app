@@ -9,5 +9,6 @@ export const PrivateRoute: React.FC<{ component: React.FC }> = ({
   if (user) {
     return <Component />;
   }
+
   return <NotFound />;
 };

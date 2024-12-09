@@ -29,7 +29,7 @@ export const RecipeList: React.FC = () => {
   }) => {
     console.log("Form Data:", formData);
     closeModal();
-  };
+  }
 
   return (
     <>

@@ -48,14 +48,14 @@ export const LoginForm: React.FC = () => {
       <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="email">Email:</label>
         <input className="input-login" {...register("email")} />
-        {errors.email && <p>{errors.email.message}</p>}
+        {errors.email && <p className="error-message">{errors.email.message}</p>}
         <label htmlFor="password">Password:</label>
         <input
           type="password"
           className="input-login"
           {...register("password")}
         />
-        {errors.password && <p>{errors.password.message}</p>}
+        {errors.password && <p className="error-message">{errors.password.message}</p>}
         <button className="button-login-submit" type="submit">
           Sign In
         </button>
@@ -63,7 +63,7 @@ export const LoginForm: React.FC = () => {
       <div className="register-link">
         You dont have an account? <a href="/register">Sign Up</a>
       </div>
-      {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
     </div>
   );
 };
