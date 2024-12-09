@@ -1,7 +1,9 @@
+import "@components/RecipeList/index.scss";
+import { Popup } from "reactjs-popup";
 import React, { useState } from "react";
 
-import "@components/RecipeList/index.scss";
 import { RecipeCard } from "@components/RecipeCard";
+import { RecipeFormAdd } from "@components/forms/RecipeFormAdd";
 
 interface Recipe {
   title: string;
@@ -14,17 +16,24 @@ export const RecipeList: React.FC = () => {
     { title: "Recipe 2", description: "Описание рецепта 2" },
   ]);
 
-  const addRecipe = () => {
-    const newRecipe = {
-      title: "New Recipe",
-      description: "Описание нового рецепта",
-    };
-    setRecipes([...recipes, newRecipe]);
+  const [open, setOpen] = useState(false);
+  const closeModal = () => setOpen(false);
+
+  const handleFormSubmit = (formData: {
+    title: string;
+    name: string;
+    body: string;
+    ingredients: string;
+    servingSize: number;
+    cookingTime: string;
+  }) => {
+    console.log("Form Data:", formData);
+    closeModal();
   };
 
   return (
     <>
-      <button className="add-button" onClick={addRecipe}>
+      <button className="add-button" onClick={() => setOpen((o) => !o)}>
         Add recipe
       </button>
       <div className="recipe-list">
@@ -36,6 +45,12 @@ export const RecipeList: React.FC = () => {
           />
         ))}
       </div>
+      <Popup open={open} closeOnDocumentClick onClose={closeModal}>
+        <div className="modal-content">
+          <h4>Add recipe</h4>
+          <RecipeFormAdd onSubmit={handleFormSubmit} />
+        </div>
+      </Popup>
     </>
   );
 };
