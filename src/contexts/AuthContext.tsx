@@ -1,7 +1,8 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { QueryResult } from "@apollo/client";
 
 import { User } from "@custom-types/user";
-import authService from "services/auth.service";
+import { useGetMe, useLogout } from "hooks/auth.hook";
 
 export interface AuthContextType {
   user: User | null;
@@ -20,6 +21,9 @@ const AuthContext: React.Context<AuthContextType | null> =
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string>("");
+
+  const { logout: logoutFun } = useLogout();
+  const { getUser } = useGetMe();
 
   useEffect(() => {
     const accessToken: string | null = localStorage.getItem("accessToken");
@@ -42,22 +46,30 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     setToken(newToken);
 
     try {
-      const userDb: User = await authService.getMe();
-      localStorage.setItem("userDb", JSON.stringify(userDb));
-      setUser(userDb);
+      const queryResultUser: QueryResult = await getUser();
+
+      if (queryResultUser.data.getMe) {
+        localStorage.setItem(
+          "userDb",
+          JSON.stringify(queryResultUser.data.getMe)
+        );
+
+        setUser(queryResultUser.data.getMe);
+      }
     } catch (error) {
       setUser(null);
     }
   };
 
   const logout = async () => {
-    await authService.logout();
+    const data: boolean | null = await logoutFun();
 
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("userDb");
-
-    setToken("");
-    setUser(null);
+    if (data) {
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("userDb");
+      setToken("");
+      setUser(null);
+    }
   };
 
   return (
@@ -69,7 +81,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
 export const useAuth = (): AuthContextType => {
   const context = useContext(AuthContext);
-  
+
   if (!context) {
     throw new Error("useAuth must be used within an AuthProvider");
   }

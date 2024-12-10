@@ -2,12 +2,12 @@ import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 
 import { getNavigation } from "@components/Navbar/navigation";
-import { useAuth } from "contexts/AuthContext";
+import { AuthContextType, useAuth } from "contexts/AuthContext";
 
 import "@components/Navbar/index.scss";
 
 export const Navbar: React.FC = () => {
-  const { user } = useAuth();
+  const { user }: AuthContextType = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navigation = getNavigation(user);

@@ -8,8 +8,12 @@ export const LogoutPage: React.FC = () => {
   const navigate: NavigateFunction = useNavigate();
 
   useEffect(() => {
-    logout();
-    navigate("/login");
+    const performLogout = async () => {
+      await logout();
+      navigate("/login");
+    };
+
+    performLogout();
   }, [logout, navigate]);
 
   return null;

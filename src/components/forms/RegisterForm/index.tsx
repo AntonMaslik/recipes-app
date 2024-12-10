@@ -3,13 +3,13 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { NavigateFunction, useNavigate } from "react-router-dom";
+import { useSignUp } from "hooks/auth.hook";
 
-import { Tokens } from "@custom-types/tokens";
-import authService from "services/auth.service";
 import { AuthContextType, useAuth } from "contexts/AuthContext";
 import { schemeRegister } from "@components/forms/RegisterForm/scheme-register";
 
 import "@components/forms/RegisterForm/index.scss";
+import { Tokens } from "@custom-types/tokens";
 
 export const RegisterForm: React.FC = () => {
   type FormData = z.infer<typeof schemeRegister>;
@@ -17,6 +17,7 @@ export const RegisterForm: React.FC = () => {
   const navigate: NavigateFunction = useNavigate();
   const [errorMessage, setErrorMessage] = useState<string>("");
   const { login }: AuthContextType = useAuth();
+  const { signUp } = useSignUp();
 
   const {
     register,
@@ -28,14 +29,16 @@ export const RegisterForm: React.FC = () => {
 
   const onSubmit = async (input: FormData) => {
     try {
-      const tokens: Tokens = await authService.signUp({
+      const data: Tokens | null = await signUp({
         name: input.name,
         email: input.email,
         password: input.password,
       });
 
-      login(tokens.accessToken);
-      navigate("/");
+      if (data) {
+        login(data.accessToken);
+        navigate("/");
+      }
     } catch (error) {
       if (error instanceof Error) {
         setErrorMessage(error.message);
@@ -52,14 +55,18 @@ export const RegisterForm: React.FC = () => {
         {errors.name && <p className="error-message">{errors.name.message}</p>}
         <label htmlFor="email">Email:</label>
         <input className="input-register" {...register("email")} />
-        {errors.email && <p className="error-message">{errors.email.message}</p>}
+        {errors.email && (
+          <p className="error-message">{errors.email.message}</p>
+        )}
         <label htmlFor="password">Password:</label>
         <input
           type="password"
           className="input-register"
           {...register("password")}
         />
-        {errors.password && <p className="error-message">{errors.password.message}</p>}
+        {errors.password && (
+          <p className="error-message">{errors.password.message}</p>
+        )}
         <button type="submit" className="button-register-submit">
           Sign Up
         </button>
