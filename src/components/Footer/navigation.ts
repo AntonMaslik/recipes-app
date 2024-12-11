@@ -1,0 +1,15 @@
+export type Link = {
+  name: string;
+  to: string;
+};
+
+export type Navigation = {
+  links: Link[];
+};
+
+export const navigation = {
+  links: [
+    { name: "Contacts", to: "/contacts" },
+    { name: "About", to: "/about" },
+  ],
+};
